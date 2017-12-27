@@ -33,18 +33,36 @@ const games = [
 ];
 
 class App extends React.Component {
-    state = {
-        games: []
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            games: []
+        };
+
+        this.toggleFeatured = this.toggleFeatured.bind(this);
+    }
 
     componentDidMount() {
-        this.setState({ games: _orderBy(games, ['featured', 'name'], ['desc', 'asc']) });
+        this.setState({ games: this.sortGames(games) });
     }
+
+    sortGames(games) {
+        return _orderBy(games, ['featured', 'name'], ['desc', 'asc']);
+    }
+
+    toggleFeatured(gameId) {
+        const newGames = this.state.games.map(game => {
+            if (game._id === gameId) return {...game, featured: !game.featured};
+            return game;
+        });
+        this.setState({ games: this.sortGames(newGames) });
+    }
+
 
     render() {
         return (
             <div className='ui container'>
-                <GamesList games={this.state.games} />
+                <GamesList games={this.state.games} toggleFeatured={this.toggleFeatured} />
             </div>
         );
     }
