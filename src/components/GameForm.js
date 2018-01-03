@@ -118,10 +118,18 @@ class GameForm extends Component {
                     <label htmlFor="featured">Featured?</label>
                 </div>
 
-                <button className='ui button' type='submit'>Create</button>
+                <div className="ui fluid buttons">
+                    <button className='ui primary button' type='submit'>Create</button>
+                    <div className="or"></div>
+                    <a className='ui button' onClick={this.props.cancel}>Cancel</a>s
+                </div>
             </form>
         );
     }
 }
+
+GameForm.propTypes = {
+    cancel: PropTypes.func.isRequired
+};
 
 export default GameForm;

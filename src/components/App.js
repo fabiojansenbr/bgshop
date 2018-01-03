@@ -2,6 +2,7 @@ import React from 'react';
 import _orderBy from 'lodash/orderBy';
 import GamesList from './GamesList';
 import GameForm from './GameForm';
+import TopNavigation from './TopNavigation';
 
 const games = [
     {
@@ -37,38 +38,46 @@ const games = [
 ];
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            games: []
-        };
-
-        this.toggleFeatured = this.toggleFeatured.bind(this);
-    }
+    state = {
+        games: [],
+        showGameForm: false
+    };
 
     componentDidMount() {
         this.setState({ games: this.sortGames(games) });
     }
 
-    sortGames(games) {
+    sortGames = games => {
         return _orderBy(games, ['featured', 'name'], ['desc', 'asc']);
-    }
+    };
 
-    toggleFeatured(gameId) {
+    toggleFeatured = gameId => {
         const newGames = this.state.games.map(game => {
             if (game._id === gameId) return {...game, featured: !game.featured};
             return game;
         });
         this.setState({ games: this.sortGames(newGames) });
-    }
+    };
 
+    showGameForm = () => this.setState({ showGameForm: true });
+
+    hideGameForm = () => this.setState({ showGameForm: false });
 
     render() {
+        const numberOfColumns = this.state.showGameForm ? 'ten' : 'sixteen';
+
         return (
             <div className='ui container'>
-                <GameForm />
-                <br />
-                <GamesList games={this.state.games} toggleFeatured={this.toggleFeatured} />
+                <TopNavigation showGameForm={this.showGameForm} />
+
+                <div className="ui stackable grid">
+                    <div className="six wide column">
+                        {this.state.showGameForm && <GameForm cancel={this.hideGameForm} />}
+                    </div>
+                    <div className={`${numberOfColumns} wide column`}>
+                        <GamesList games={this.state.games} toggleFeatured={this.toggleFeatured} />
+                    </div>
+                </div>
             </div>
         );
     }
