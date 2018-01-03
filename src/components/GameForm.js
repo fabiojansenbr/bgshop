@@ -4,27 +4,32 @@ import ReactImageFallback from 'react-image-fallback';
 
 class GameForm extends Component {
     state = {
-        name: '',
-        description: '',
-        price: 0,
-        duration: 0,
-        players: '',
-        featured: false,
-        thumbnail: ''
+        data: {
+            name: '',
+            description: '',
+            price: 0,
+            duration: 0,
+            players: '',
+            featured: false,
+            thumbnail: ''
+        },
+        errors: {}
     };
 
     handleSubmit = e => {
         e.preventDefault();
-        console.log(this.state);
+        console.log(this.state.data);
     };
 
-    handleStringChange = e => this.setState({ [e.target.name]: e.target.value });
+    handleStringChange = e => this.setState({ data: { ...this.state.data, [e.target.name]: e.target.value } });
 
-    handleNumberChange = e => this.setState({ [e.target.name]: parseInt(e.target.value, 10) });
+    handleNumberChange = e => this.setState({ data: { ...this.state.data, [e.target.name]: parseInt(e.target.value, 10) } });
 
-    handleCheckboxChange = e => this.setState({ [e.target.name]: e.target.checked });
+    handleCheckboxChange = e => this.setState({ data: { ...this.state.data, [e.target.name]: e.target.checked } });
 
     render() {
+        const { data } = this.state;
+
         return (
             <form className='ui form' onSubmit={this.handleSubmit}>
                 <div className="ui grid">
@@ -36,7 +41,7 @@ class GameForm extends Component {
                                 id='name'
                                 name='name'
                                 placeholder='Full game title'
-                                value={this.state.name}
+                                value={data.name}
                                 onChange={this.handleStringChange}
                             />
                         </div>
@@ -47,14 +52,14 @@ class GameForm extends Component {
                                 id='description'
                                 name='description'
                                 placeholder='Game Description'
-                                value={this.state.description}
+                                value={data.description}
                                 onChange={this.handleStringChange}
                             />
                         </div>
                     </div>
                     <div className="four wide column">
                         <ReactImageFallback
-                            src={this.state.thumbnail}
+                            src={data.thumbnail}
                             fallbackImage='http://via.placeholder.com/250x250'
                             alt='Thumbnail'
                             className='ui image'
@@ -69,7 +74,7 @@ class GameForm extends Component {
                         id='thumbnail'
                         name='thumbnail'
                         placeholder='Image URL'
-                        value={this.state.thumbnail}
+                        value={data.thumbnail}
                         onChange={this.handleStringChange}
                     />
                 </div>
@@ -81,7 +86,7 @@ class GameForm extends Component {
                             type='number'
                             id='price'
                             name='price'
-                            value={this.state.price}
+                            value={data.price}
                             onChange={this.handleNumberChange}
                         />
                     </div>
@@ -91,7 +96,7 @@ class GameForm extends Component {
                             type='number'
                             id='duration'
                             name='duration'
-                            value={this.state.duration}
+                            value={data.duration}
                             onChange={this.handleNumberChange}
                         />
                     </div>
@@ -101,7 +106,7 @@ class GameForm extends Component {
                             type='text'
                             id='players'
                             name='players'
-                            value={this.state.players}
+                            value={data.players}
                             onChange={this.handleStringChange}
                         />
                     </div>
@@ -112,7 +117,7 @@ class GameForm extends Component {
                         id='featured'
                         name='featured'
                         type='checkbox'
-                        checked={this.state.featured}
+                        checked={data.featured}
                         onChange={this.handleCheckboxChange}
                     />
                     <label htmlFor="featured">Featured?</label>
