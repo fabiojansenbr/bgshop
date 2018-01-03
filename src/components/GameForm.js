@@ -35,7 +35,7 @@ class GameForm extends Component {
         this.setState({ errors });
 
         if (Object.keys(errors).length === 0) {
-            console.log(this.state.data);
+            this.props.submit(this.state.data);
         }
     };
 
@@ -158,7 +158,8 @@ class GameForm extends Component {
 }
 
 GameForm.propTypes = {
-    cancel: PropTypes.func.isRequired
+    cancel: PropTypes.func.isRequired,
+    submit: PropTypes.func.isRequired
 };
 
 export default GameForm;

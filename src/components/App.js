@@ -63,6 +63,17 @@ class App extends React.Component {
 
     hideGameForm = () => this.setState({ showGameForm: false });
 
+    addGame = game => this.setState({
+        games: this.sortGames([
+            ...this.state.games,
+            {
+                ...game,
+                _id: this.state.games.length + 1
+            }
+        ]),
+        showGameForm: false
+    });
+
     render() {
         const numberOfColumns = this.state.showGameForm ? 'ten' : 'sixteen';
 
@@ -72,7 +83,7 @@ class App extends React.Component {
 
                 <div className="ui stackable grid">
                     <div className="six wide column">
-                        {this.state.showGameForm && <GameForm cancel={this.hideGameForm} />}
+                        {this.state.showGameForm && <GameForm cancel={this.hideGameForm} submit={this.addGame} />}
                     </div>
                     <div className={`${numberOfColumns} wide column`}>
                         <GamesList games={this.state.games} toggleFeatured={this.toggleFeatured} />
