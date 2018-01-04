@@ -3,19 +3,37 @@ import PropTypes from 'prop-types';
 import ReactImageFallback from 'react-image-fallback';
 import FormInlineMessage from './FormInlineMessage';
 
+const initialData = {
+    _id: null,
+    name: '',
+    description: '',
+    price: 0,
+    duration: 0,
+    players: '',
+    featured: false,
+    thumbnail: ''
+};
+
 class GameForm extends Component {
     state = {
-        data: {
-            name: '',
-            description: '',
-            price: 0,
-            duration: 0,
-            players: '',
-            featured: false,
-            thumbnail: ''
-        },
+        data: initialData,
         errors: {}
     };
+
+    componentDidMount() {
+        if (this.props.game._id) {
+            this.setState({ data: this.props.game });
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.game._id && nextProps.game._id !== this.state.data._id) {
+            this.setState({ data: nextProps.game });
+        }
+        if (!nextProps.game._id) {
+            this.setState({ data: initialData });
+        }
+    }
 
     validate(data) {
         const errors = {};
@@ -159,7 +177,15 @@ class GameForm extends Component {
 
 GameForm.propTypes = {
     cancel: PropTypes.func.isRequired,
-    submit: PropTypes.func.isRequired
+    submit: PropTypes.func.isRequired,
+    game: PropTypes.shape({
+        name: PropTypes.string,
+        thumbnail: PropTypes.string,
+        players: PropTypes.string,
+        price: PropTypes.number,
+        featured: PropTypes.bool,
+        duration: PropTypes.number
+    }).isRequired
 };
 
 export default GameForm;

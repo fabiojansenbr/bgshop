@@ -40,7 +40,8 @@ const games = [
 class App extends React.Component {
     state = {
         games: [],
-        showGameForm: false
+        showGameForm: false,
+        selectedGame: {}
     };
 
     componentDidMount() {
@@ -59,9 +60,9 @@ class App extends React.Component {
         this.setState({ games: this.sortGames(newGames) });
     };
 
-    showGameForm = () => this.setState({ showGameForm: true });
+    showGameForm = () => this.setState({ showGameForm: true, selectedGame: {} });
 
-    hideGameForm = () => this.setState({ showGameForm: false });
+    hideGameForm = () => this.setState({ showGameForm: false, selectedGame: {} });
 
     addGame = game => this.setState({
         games: this.sortGames([
@@ -74,6 +75,8 @@ class App extends React.Component {
         showGameForm: false
     });
 
+    selectGameForEditing = game => this.setState({ selectedGame: game, showGameForm: true });
+
     render() {
         const numberOfColumns = this.state.showGameForm ? 'ten' : 'sixteen';
 
@@ -82,11 +85,22 @@ class App extends React.Component {
                 <TopNavigation showGameForm={this.showGameForm} />
 
                 <div className="ui stackable grid">
-                    <div className="six wide column">
-                        {this.state.showGameForm && <GameForm cancel={this.hideGameForm} submit={this.addGame} />}
-                    </div>
+                    {this.state.showGameForm && (
+                        <div className="six wide column">
+                            <GameForm
+                                cancel={this.hideGameForm}
+                                submit={this.addGame}
+                                game={this.state.selectedGame}
+                            />
+                        </div>
+                    )}
+
                     <div className={`${numberOfColumns} wide column`}>
-                        <GamesList games={this.state.games} toggleFeatured={this.toggleFeatured} />
+                        <GamesList
+                            games={this.state.games}
+                            toggleFeatured={this.toggleFeatured}
+                            editGame={this.selectGameForEditing}
+                        />
                     </div>
                 </div>
             </div>

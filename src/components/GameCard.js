@@ -18,11 +18,11 @@ class GameCard extends React.Component {
     }
 
     render() {
-        const { game, toggleFeatured } = this.props;
+        const { game, toggleFeatured, editGame } = this.props;
 
         return (
             <div className='ui card'>
-                <div className='image'>
+                <div className='ui image'>
                     <Price cents={game.price} />
                     <Featured
                         featured={game.featured}
@@ -38,16 +38,26 @@ class GameCard extends React.Component {
                     )}
                 </div>
                 <div className='content ui grid'>
-                    <div className='left floated eleven wide column'>
+                    <div className='eleven wide column'>
                         <a className='header'>{game.name}</a>
                         <div className='meta'>
                             <i className='icon users' /> {game.players}&nbsp;
                             <i className='icon wait' /> {game.duration} min.
                         </div>
                     </div>
-                    <div className='right floated five wide column meta'>
+                    <div className='five wide column meta'>
                         <a onClick={this.handleDescription}>
                             <i className='icon eye' />
+                        </a>
+                    </div>
+                </div>
+                <div className="extra content">
+                    <div className="ui two buttons">
+                        <a className="ui basic green button" onClick={() => editGame(game)}>
+                            <i className="ui icon edit" />
+                        </a>
+                        <a className="ui basic red button">
+                            <i className="ui icon trash" />
                         </a>
                     </div>
                 </div>
@@ -65,7 +75,8 @@ GameCard.propTypes = {
         duration: PropTypes.number.isRequired,
         featured: PropTypes.bool.isRequired
     }).isRequired,
-    toggleFeatured: PropTypes.func.isRequired
+    toggleFeatured: PropTypes.func.isRequired,
+    editGame: PropTypes.func.isRequired
 };
 
 export default GameCard;
