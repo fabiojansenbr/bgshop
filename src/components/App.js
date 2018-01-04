@@ -7,6 +7,7 @@ import TopNavigation from './TopNavigation';
 const games = [
     {
         _id: 1,
+        publisher: 1,
         featured: true,
         name: 'Quadropolis',
         thumbnail: 'https://cf.geekdo-images.com/tthn7L9-fC_GaXJHfA20VdTrFts=/fit-in/1200x630/pic2840020.jpg',
@@ -17,6 +18,7 @@ const games = [
     },
     {
         _id: 2,
+        publisher: 1,
         featured: false,
         name: 'Five Tribes',
         thumbnail: 'https://cf.geekdo-images.com/o3D15fBxzTt3k2IFZ2u2Xr7Wlyk=/fit-in/246x300/pic2055255.jpg',
@@ -27,6 +29,7 @@ const games = [
     },
     {
         _id: 3,
+        publisher: 2,
         featured: false,
         name: 'Roll for the Galaxy',
         thumbnail: 'https://cf.geekdo-images.com/Vi3pvbq9sLk_OHzxio8lzjB_77k=/fit-in/246x300/pic1473629.jpg',
@@ -34,6 +37,17 @@ const games = [
         price: 2999,
         players: '2-5',
         duration: 45
+    }
+];
+
+const publishers = [
+    {
+        _id: 1,
+        name: 'Days of Wonder'
+    },
+    {
+        _id: 2,
+        name: 'Rio Grande Games'
     }
 ];
 
@@ -101,6 +115,7 @@ class App extends React.Component {
                     {this.state.showGameForm && (
                         <div className="six wide column">
                             <GameForm
+                                publishers={publishers}
                                 cancel={this.hideGameForm}
                                 submit={this.saveGame}
                                 game={this.state.selectedGame}

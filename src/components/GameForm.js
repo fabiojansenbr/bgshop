@@ -11,7 +11,8 @@ const initialData = {
     duration: 0,
     players: '',
     featured: false,
-    thumbnail: ''
+    thumbnail: '',
+    publisher: 0
 };
 
 class GameForm extends Component {
@@ -41,6 +42,7 @@ class GameForm extends Component {
         if (!data.name) errors.name = 'This field can\'t be blank';
         if (!data.players) errors.players = 'This field can\'t be blank';
         if (!data.thumbnail) errors.thumbnail = 'This field can\'t be blank';
+        if (!data.publisher) errors.publisher = 'This field can\'t be blank';
         if (data.price <= 0) errors.price = 'Too cheap, don\'t you think?';
         if (data.duration <= 0) errors.duration = 'Too short, isn\'t it?';
 
@@ -165,6 +167,23 @@ class GameForm extends Component {
                     <label htmlFor="featured">Featured?</label>
                 </div>
 
+                <div className={errors.publisher ? 'field error' : 'field'}>
+                    <label>Publishers</label>
+                    <select
+                        name='publisher'
+                        value={data.publisher}
+                        onChange={this.handleNumberChange}
+                    >
+                        <option value="0">Choose publisher</option>
+                        { this.props.publishers.map(publisher => (
+                            <option value={publisher._id} key={publisher._id}>
+                                {publisher.name}
+                            </option>
+                        ))}
+                    </select>
+                    <FormInlineMessage content={errors.publisher} type='error' />
+                </div>
+
                 <div className="ui fluid buttons">
                     <button className='ui primary button' type='submit'>Create</button>
                     <div className="or"></div>
@@ -176,6 +195,10 @@ class GameForm extends Component {
 }
 
 GameForm.propTypes = {
+    publishers: PropTypes.arrayOf(PropTypes.shape({
+        _id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired
+    })).isRequired,
     cancel: PropTypes.func.isRequired,
     submit: PropTypes.func.isRequired,
     game: PropTypes.shape({
@@ -186,6 +209,10 @@ GameForm.propTypes = {
         featured: PropTypes.bool,
         duration: PropTypes.number
     }).isRequired
+};
+
+GameForm.defaultProps = {
+    publishers: []
 };
 
 export default GameForm;

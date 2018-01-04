@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e89b0ffb-aed6-4048-a9fc-d7f5c87d17e5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/components/App.js" afterPath="$PROJECT_DIR$/src/components/App.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/GameCard.js" afterPath="$PROJECT_DIR$/src/components/GameCard.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/GamesList.js" afterPath="$PROJECT_DIR$/src/components/GamesList.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/GameForm.js" afterPath="$PROJECT_DIR$/src/components/GameForm.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,8 +37,8 @@
       <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="115" column="55" lean-forward="false" selection-start-line="115" selection-start-column="55" selection-end-line="115" selection-end-column="55" />
+            <state relative-caret-position="252">
+              <caret line="117" column="54" lean-forward="false" selection-start-line="117" selection-start-column="54" selection-end-line="117" selection-end-column="54" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -47,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameForm.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameForm.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/GameForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state relative-caret-position="571">
+              <caret line="183" column="64" lean-forward="false" selection-start-line="183" selection-start-column="64" selection-end-line="183" selection-end-column="64" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -71,7 +70,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameCard.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameCard.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/GameCard.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="235">
@@ -98,10 +97,10 @@
         <option value="$PROJECT_DIR$/src/components/Featured.js" />
         <option value="$PROJECT_DIR$/src/components/FormInlineMessage.js" />
         <option value="$PROJECT_DIR$/src/components/TopNavigation.js" />
-        <option value="$PROJECT_DIR$/src/components/GameForm.js" />
         <option value="$PROJECT_DIR$/src/components/GamesList.js" />
-        <option value="$PROJECT_DIR$/src/components/App.js" />
         <option value="$PROJECT_DIR$/src/components/GameCard.js" />
+        <option value="$PROJECT_DIR$/src/components/App.js" />
+        <option value="$PROJECT_DIR$/src/components/GameForm.js" />
       </list>
     </option>
   </component>
@@ -204,12 +203,12 @@
       <workItem from="1514888866315" duration="9434000" />
       <workItem from="1514984473075" duration="573000" />
       <workItem from="1514985075989" duration="9265000" />
-      <workItem from="1515058793770" duration="6465000" />
+      <workItem from="1515058793770" duration="8916000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53073000" />
+    <option name="totallyTimeSpent" value="55524000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -696,16 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/GameForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/GamesList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
@@ -716,20 +705,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/GameCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="54" column="60" lean-forward="false" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="115" column="55" lean-forward="false" selection-start-line="115" selection-start-column="55" selection-end-line="115" selection-end-column="55" />
+        <state relative-caret-position="252">
+          <caret line="117" column="54" lean-forward="false" selection-start-line="117" selection-start-column="54" selection-end-line="117" selection-end-column="54" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/GameCard.js">
+    <entry file="file://$PROJECT_DIR$/src/components/GameForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="54" column="60" lean-forward="false" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
+        <state relative-caret-position="571">
+          <caret line="183" column="64" lean-forward="false" selection-start-line="183" selection-start-column="64" selection-end-line="183" selection-end-column="64" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
