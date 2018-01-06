@@ -50,27 +50,25 @@ class GameCard extends Component {
                     </div>
                 </div>
                 <div className="extra content">
-                    {
-                        this.state.showConfirmation ? (
-                            <div className="ui two buttons">
-                                <a className="ui basic red button" onClick={() => deleteGame(game)}>
-                                    <i className="ui icon check" /> YES
-                                </a>
-                                <a className="ui basic grey button" onClick={this.hideConfirmation}>
-                                    <i className="ui icon close" /> NO
-                                </a>
-                            </div>
-                        ): (
-                            <div className="ui two buttons">
-                                <a className="ui basic green button" onClick={() => editGame(game)}>
-                                    <i className="ui icon edit" />
-                                </a>
-                                <a className="ui basic red button" onClick={this.showConfirmation}>
-                                    <i className="ui icon trash" />
-                                </a>
-                            </div>
-                        )
-                    }
+                    {this.state.showConfirmation ? (
+                        <div className="ui two buttons">
+                            <a className="ui basic red button" onClick={() => deleteGame(game)}>
+                                <i className="ui icon check" /> YES
+                            </a>
+                            <a className="ui basic grey button" onClick={this.hideConfirmation}>
+                                <i className="ui icon close" /> NO
+                            </a>
+                        </div>
+                    ): (
+                        <div className="ui two buttons">
+                            <a className="ui basic green button" onClick={() => editGame(game)}>
+                                <i className="ui icon edit" />
+                            </a>
+                            <a className="ui basic red button" onClick={this.showConfirmation}>
+                                <i className="ui icon trash" />
+                            </a>
+                        </div>
+                    )}
                 </div>
             </div>
         );

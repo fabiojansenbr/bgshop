@@ -3,50 +3,15 @@ import _orderBy from 'lodash/orderBy';
 import GamesList from './GamesList';
 import GameForm from './GameForm';
 import TopNavigation from './TopNavigation';
-
-const games = [
-    {
-        _id: 1,
-        publisher: 1,
-        featured: true,
-        name: 'Quadropolis',
-        thumbnail: 'https://cf.geekdo-images.com/tthn7L9-fC_GaXJHfA20VdTrFts=/fit-in/1200x630/pic2840020.jpg',
-        description: 'Roll for the Galaxy is a dice game of building space empires for 2–5 players. Your dice represent your populace, whom you direct to develop new technologies, settle worlds, and ship goods. The player who best manages his workers and builds the most prosperous empire wins! This dice version of Race for the Galaxy takes players on a new journey through the Galaxy.',
-        price: 3299,
-        players: '2-4',
-        duration: 60
-    },
-    {
-        _id: 2,
-        publisher: 1,
-        featured: false,
-        name: 'Five Tribes',
-        thumbnail: 'https://cf.geekdo-images.com/o3D15fBxzTt3k2IFZ2u2Xr7Wlyk=/fit-in/246x300/pic2055255.jpg',
-        description: 'Roll for the Galaxy is a dice game of building space empires for 2–5 players. Your dice represent your populace, whom you direct to develop new technologies, settle worlds, and ship goods. The player who best manages his workers and builds the most prosperous empire wins! This dice version of Race for the Galaxy takes players on a new journey through the Galaxy.',
-        price: 5100,
-        players: '2-4',
-        duration: 80
-    },
-    {
-        _id: 3,
-        publisher: 2,
-        featured: false,
-        name: 'Roll for the Galaxy',
-        thumbnail: 'https://cf.geekdo-images.com/Vi3pvbq9sLk_OHzxio8lzjB_77k=/fit-in/246x300/pic1473629.jpg',
-        description: 'Roll for the Galaxy is a dice game of building space empires for 2–5 players. Your dice represent your populace, whom you direct to develop new technologies, settle worlds, and ship goods. The player who best manages his workers and builds the most prosperous empire wins! This dice version of Race for the Galaxy takes players on a new journey through the Galaxy.',
-        price: 2999,
-        players: '2-5',
-        duration: 45
-    }
-];
+import api from '../api';
 
 const publishers = [
     {
-        _id: 1,
+        _id: '1',
         name: 'Days of Wonder'
     },
     {
-        _id: 2,
+        _id: '2',
         name: 'Rio Grande Games'
     }
 ];
@@ -59,7 +24,8 @@ class App extends React.Component {
     };
 
     componentDidMount() {
-        this.setState({ games: this.sortGames(games) });
+        api.games.fetchAll()
+            .then(games => this.setState({ games: this.sortGames(games) }));
     }
 
     sortGames = games => {
@@ -80,16 +46,13 @@ class App extends React.Component {
 
     saveGame = game => game._id ? this.updateGame(game) : this.addGame(game);
 
-    addGame = game => this.setState({
-        games: this.sortGames([
-            ...this.state.games,
-            {
-                ...game,
-                _id: this.state.games.length + 1
-            }
-        ]),
-        showGameForm: false
-    });
+    addGame = gameData =>
+        api.games.create(gameData).then(game =>
+            this.setState({
+                games: this.sortGames([ ...this.state.games, game ]),
+                showGameForm: false
+            })
+        );
 
     updateGame = game => this.setState({
         games: this.sortGames(
